@@ -1,11 +1,12 @@
 const net = require('net')
 const fs = require('fs')
 
-var server = net.createServer((socket) => {
+let server = net.createServer((socket) => {
 	console.log('client connected')
 
 	setTimeout(() => {
 		socket.write('test hello\n')
+		// FIN-пакет
 		socket.end()
 	}, 3000)
 
@@ -22,7 +23,7 @@ var server = net.createServer((socket) => {
 })
 
 server.on('error', (err) => {
-  throw err
+	throw err
 })
 
 server.listen(8888, '10.10.0.16', () => {
